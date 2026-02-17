@@ -10,17 +10,39 @@ export function Contact() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError("");
 
-    // Simulate form submission - replace with actual form handling
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    try {
+      const res = await fetch("https://formsubmit.co/ajax/contactdslabs@gmail.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: formState.name,
+          email: formState.email,
+          message: formState.project,
+          _subject: `New project inquiry from ${formState.name}`,
+        }),
+      });
 
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    setFormState({ name: "", email: "", project: "" });
+      if (res.ok) {
+        setIsSubmitted(true);
+        setFormState({ name: "", email: "", project: "" });
+      } else {
+        setError("Something went wrong. Please try again or email us directly.");
+      }
+    } catch {
+      setError("Network error. Please try again or email us directly.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -43,12 +65,35 @@ export function Contact() {
             </p>
 
             <div className="space-y-4 text-[var(--foreground-muted)]">
+              {/* Email */}
+              <a
+                href="mailto:contactdslabs@gmail.com"
+                className="flex items-center gap-3 hover:text-[var(--foreground)] transition-colors"
+              >
+                <svg className="w-5 h-5 text-[var(--foreground-subtle)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                contactdslabs@gmail.com
+              </a>
+
+              {/* Address */}
+              <p className="flex items-center gap-3">
+                <svg className="w-5 h-5 text-[var(--foreground-subtle)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                Surat, Gujarat, India
+              </p>
+
+              {/* Reply time */}
               <p className="flex items-center gap-3">
                 <svg className="w-5 h-5 text-[var(--foreground-subtle)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 We usually reply within 24-48 hours
               </p>
+
+              {/* No commitment */}
               <p className="flex items-center gap-3">
                 <svg className="w-5 h-5 text-[var(--foreground-subtle)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -86,6 +131,7 @@ export function Contact() {
                   <input
                     type="text"
                     id="name"
+                    name="name"
                     required
                     value={formState.name}
                     onChange={(e) =>
@@ -106,6 +152,7 @@ export function Contact() {
                   <input
                     type="email"
                     id="email"
+                    name="email"
                     required
                     value={formState.email}
                     onChange={(e) =>
@@ -125,6 +172,7 @@ export function Contact() {
                   </label>
                   <textarea
                     id="project"
+                    name="message"
                     required
                     rows={5}
                     value={formState.project}
@@ -135,6 +183,10 @@ export function Contact() {
                     placeholder="What are you building? What problem are you trying to solve?"
                   />
                 </div>
+
+                {error && (
+                  <p className="text-sm text-red-500">{error}</p>
+                )}
 
                 <button
                   type="submit"

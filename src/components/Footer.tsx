@@ -29,7 +29,7 @@ export function Footer() {
               </svg>
             </a>
             <a
-              href="mailto:hello@dslabs.dev"
+              href="mailto:contactdslabs@gmail.com"
               className="text-[var(--foreground-muted)] hover:text-[var(--foreground)] transition-colors"
               aria-label="Email"
             >

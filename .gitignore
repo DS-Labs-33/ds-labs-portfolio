@@ -39,3 +39,15 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# claude code
+.claude/
+
+# playwright
+.playwright-mcp/
+
+# screenshots
+*.png
+
+# stray files
+nul
