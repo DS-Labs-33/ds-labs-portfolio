@@ -1,51 +1,91 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 export function Hero() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } },
+  };
+
   return (
-    <section className="min-h-screen flex items-center justify-center px-6 pt-20">
-      <div className="max-w-4xl mx-auto text-center">
+    <section className="min-h-screen flex items-center justify-center px-6 pt-20 relative overflow-hidden">
+      {/* Background Glows */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[var(--accent)]/10 rounded-full blur-[120px] -z-10" />
+
+      <motion.div
+        className="max-w-4xl mx-auto text-center"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
         {/* Studio Label */}
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[var(--border)] mb-8">
-          <span className="w-2 h-2 rounded-full bg-[var(--success)]"></span>
-          <span className="text-sm text-[var(--foreground-muted)]">
+        <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--border)] mb-8 bg-[var(--background)]/50 backdrop-blur-md shadow-sm">
+          <span className="w-2 h-2 rounded-full bg-[var(--success)] animate-pulse shadow-[0_0_8px_var(--success)]"></span>
+          <span className="text-sm font-medium tracking-wide text-[var(--foreground-muted)] uppercase">
             Available for select projects
           </span>
-        </div>
+        </motion.div>
 
         {/* Headline */}
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-medium tracking-tight mb-6 text-[var(--foreground)]">
+        <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl lg:text-8xl font-medium tracking-tighter mb-8 text-[var(--foreground)]">
           We build software
           <br />
-          <span className="text-[var(--foreground-muted)]">that works.</span>
-        </h1>
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--foreground)] to-[var(--foreground-muted)]">
+            that works as you wish.
+          </span>
+        </motion.h1>
 
         {/* Subheadline */}
-        <p className="text-lg md:text-xl text-[var(--foreground-muted)] max-w-2xl mx-auto mb-12">
+        <motion.p variants={itemVariants} className="text-lg md:text-2xl text-[var(--foreground-muted)] max-w-2xl mx-auto mb-12 leading-relaxed">
           DS Labs is a selective digital studio specializing in AI tools, web applications,
           and backend systems. We partner with clients who value quality over speed.
-        </p>
+        </motion.p>
 
         {/* CTAs */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a
+        <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <motion.a
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             href="#contact"
-            className="px-8 py-4 bg-[var(--accent)] text-[var(--background)] rounded-lg font-medium hover:bg-[var(--accent-hover)] transition-colors w-full sm:w-auto text-center"
+            className="px-8 py-4 bg-[var(--accent)] text-[var(--background)] rounded-full font-medium hover:shadow-[0_0_20px_var(--accent)] transition-all w-full sm:w-auto text-center"
           >
             Start a Project
-          </a>
-          <a
+          </motion.a>
+          <motion.a
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             href="#work"
-            className="px-8 py-4 border border-[var(--border)] text-[var(--foreground)] rounded-lg font-medium hover:bg-[var(--border-subtle)] transition-colors w-full sm:w-auto text-center"
+            className="px-8 py-4 border border-[var(--border)] text-[var(--foreground)] rounded-full font-medium hover:bg-[var(--border-subtle)] hover:shadow-lg transition-all w-full sm:w-auto text-center bg-[var(--background)]/50 backdrop-blur-sm"
           >
             View Work
-          </a>
-        </div>
+          </motion.a>
+        </motion.div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 hidden md:block">
-          <div className="w-6 h-10 rounded-full border-2 border-[var(--border)] flex items-start justify-center p-1">
-            <div className="w-1 h-2 bg-[var(--foreground-muted)] rounded-full animate-bounce"></div>
+        <motion.div
+          variants={itemVariants}
+          className="absolute bottom-12 left-1/2 -translate-x-1/2 hidden md:block"
+        >
+          <div className="w-6 h-10 rounded-full border-2 border-[var(--border)] flex items-start justify-center p-1 bg-[var(--background)]/50 backdrop-blur-sm">
+            <motion.div
+              animate={{ y: [0, 12, 0] }}
+              transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+              className="w-1.5 h-2.5 bg-[var(--foreground-muted)] rounded-full"
+            />
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

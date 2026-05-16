@@ -18,7 +18,7 @@ export function Footer() {
           {/* Links */}
           <div className="flex items-center gap-6">
             <a
-              href="https://github.com/Sahaj33-op"
+              href="https://github.com/DS-Labs-33"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[var(--foreground-muted)] hover:text-[var(--foreground)] transition-colors"
