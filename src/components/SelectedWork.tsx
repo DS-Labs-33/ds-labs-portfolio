@@ -158,16 +158,15 @@ function TiltCard({ children, className, padding = "p-8" }: { children: React.Re
         ref={ref}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+        style={{ rotateX, rotateY }}
         whileHover={{ scale: 1.02 }}
         transition={{ type: "spring", stiffness: 400, damping: 30 }}
-        className="h-full w-full rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] hover:border-[var(--foreground-subtle)] shadow-sm hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.2)] transition-colors duration-300 relative group overflow-hidden"
+        className="h-full w-full rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] hover:border-[var(--foreground-subtle)] shadow-sm hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.2)] transition-colors duration-300 relative group"
       >
         <div 
-          className="absolute inset-0 bg-gradient-to-br from-[var(--foreground)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" 
-          style={{ transform: "translateZ(-1px)" }} 
+          className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[var(--foreground)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" 
         />
-        <div style={{ transform: "translateZ(30px)", transformStyle: "preserve-3d" }} className={`h-full w-full relative z-10 ${padding}`}>
+        <div className={`h-full w-full relative z-10 ${padding}`}>
           {children}
         </div>
       </motion.div>
