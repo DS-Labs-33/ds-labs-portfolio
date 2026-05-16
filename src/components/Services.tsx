@@ -1,3 +1,7 @@
+"use client";
+
+import { motion, Variants } from "framer-motion";
+
 const services = [
   {
     title: "AI Tools & Automation",
@@ -52,43 +56,79 @@ const services = [
 ];
 
 export function Services() {
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1 },
+    },
+  };
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { type: "spring", stiffness: 300, damping: 24 } 
+    },
+  };
+
   return (
-    <section id="services" className="py-32 px-6">
-      <div className="max-w-6xl mx-auto">
+    <section id="services" className="py-32 px-6 relative">
+      <div className="max-w-6xl mx-auto relative z-10">
         {/* Section Header */}
-        <div className="max-w-2xl mb-16">
-          <p className="text-sm uppercase tracking-wider text-[var(--foreground-subtle)] mb-4">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={containerVariants}
+          className="max-w-2xl mb-16"
+        >
+          <motion.p variants={itemVariants} className="text-sm uppercase tracking-wider text-[var(--accent)] mb-4 font-medium">
             What We Do
-          </p>
-          <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-[var(--foreground)] mb-6">
+          </motion.p>
+          <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-medium tracking-tight text-[var(--foreground)] mb-6">
             Focused expertise,
             <br />
             <span className="text-[var(--foreground-muted)]">real results.</span>
-          </h2>
-          <p className="text-[var(--foreground-muted)]">
+          </motion.h2>
+          <motion.p variants={itemVariants} className="text-lg text-[var(--foreground-muted)] leading-relaxed">
             We specialize in a few things and do them well. Every project gets our full attention.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 gap-6">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={containerVariants}
+          className="grid md:grid-cols-2 gap-6"
+        >
           {services.map((service, index) => (
-            <div
+            <motion.div
               key={index}
-              className="group p-8 rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] hover:border-[var(--foreground-subtle)] transition-colors"
+              variants={itemVariants}
+              whileHover={{ y: -5, scale: 1.01 }}
+              className="group p-8 rounded-3xl border border-[var(--card-border)] bg-[var(--card-bg)] hover:border-[var(--accent)] shadow-sm hover:shadow-2xl hover:shadow-[var(--accent)]/5 transition-all duration-300 relative overflow-hidden"
             >
-              <div className="w-12 h-12 rounded-xl bg-[var(--border)] flex items-center justify-center text-[var(--foreground)] mb-6 group-hover:bg-[var(--accent)] group-hover:text-[var(--background)] transition-colors">
-                {service.icon}
+              {/* Background gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              
+              <div className="relative z-10">
+                <div className="w-14 h-14 rounded-2xl bg-[var(--border)] flex items-center justify-center text-[var(--foreground)] mb-6 group-hover:bg-[var(--accent)] group-hover:text-[var(--background)] group-hover:scale-110 group-hover:-rotate-3 transition-all duration-300 shadow-sm">
+                  {service.icon}
+                </div>
+                <h3 className="text-xl font-medium text-[var(--foreground)] mb-3 group-hover:text-[var(--accent)] transition-colors">
+                  {service.title}
+                </h3>
+                <p className="text-[var(--foreground-muted)] leading-relaxed">
+                  {service.description}
+                </p>
               </div>
-              <h3 className="text-xl font-medium text-[var(--foreground)] mb-3">
-                {service.title}
-              </h3>
-              <p className="text-[var(--foreground-muted)] leading-relaxed">
-                {service.description}
-              </p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
