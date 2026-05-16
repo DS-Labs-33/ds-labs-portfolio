@@ -19,25 +19,29 @@ export function Contact() {
     setError("");
 
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
         body: JSON.stringify({
+          access_key: "970b8905-e70d-47dd-bc0e-07b29f31b4ce",
           name: formState.name,
           email: formState.email,
           message: formState.project,
-          _subject: `New project inquiry from ${formState.name}`,
+          subject: `New project inquiry from ${formState.name}`,
+          from_name: "DS Labs Portfolio",
         }),
       });
+
+      const data = await res.json().catch(() => null);
 
       if (res.ok) {
         setIsSubmitted(true);
         setFormState({ name: "", email: "", project: "" });
       } else {
-        setError("Something went wrong on the server. Please try again or email us directly.");
+        setError(data?.message || "Something went wrong. Please try again or email us directly.");
       }
     } catch {
       setError("Network error. Please check your connection and try again.");
