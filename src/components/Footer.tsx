@@ -17,6 +17,24 @@ export function Footer() {
 
           {/* Links */}
           <div className="flex items-center gap-6">
+            <div className="flex items-center gap-4 border-r border-[var(--border)] pr-6">
+              <a
+                href="https://linktr.ee/sahaj33"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs font-medium text-[var(--foreground-muted)] hover:text-[var(--foreground)] transition-colors uppercase tracking-widest"
+              >
+                Sahaj
+              </a>
+              <a
+                href="https://linktr.ee/divyviradiya"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs font-medium text-[var(--foreground-muted)] hover:text-[var(--foreground)] transition-colors uppercase tracking-widest"
+              >
+                Divy
+              </a>
+            </div>
             <a
               href="https://github.com/DS-Labs-33"
               target="_blank"

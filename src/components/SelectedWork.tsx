@@ -6,42 +6,40 @@ import React, { useRef } from "react";
 const projects = [
   {
     title: "PocketMC",
+    type: "desktop-app",
     description: "Windows desktop app to locally host and manage Minecraft Java and Bedrock Edition servers without any mess",
     problem: "Players struggled with complex proxy setup and JVM management for local network play",
     outcome: "Self-contained C# Windows application with automated tunneling, network management, and system tray integration",
     tech: ["C#", "WPF", ".NET", "playit"],
     github: "https://github.com/PocketMC/pocket-mc-windows",
+    live: "https://pocketmc.github.io/pocket-mc-website/",
     featured: true,
   },
   {
-    title: "SaaS Inspector",
-    description: "Evidence-backed idea validation tool for micro-SaaS founders",
-    problem: "Founders had no systematic way to validate SaaS ideas before investing time and money",
-    outcome: "10 independent market scanners analyze search volume, competitors, Reddit buzz, and more to deliver a Go/Experiment/No-Go verdict",
-    tech: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Redis", "Tailwind CSS"],
-    github: "https://github.com/Sahaj33-op/SaaS-Inspector",
+    title: "StudySage",
+    type: "desktop-app",
+    description: "Offline, AI-powered note assistant to summarize notes, generate quizzes, and extract handwritten text",
+    problem: "Students and professionals needed reliable AI document analysis without sending sensitive data to cloud APIs",
+    outcome: "Local-first desktop GUI application exporting to PDF securely with on-device models",
+    tech: ["Python", "Transformers", "NLTK", "OCR"],
+    github: "https://github.com/Sahaj33-op/StudySage-Offline-Online-AI-Note-Assistant",
+    live: "https://studysage-sahaj33.streamlit.app/",
     featured: true,
   },
   {
-    title: "Minecraft Server Manager",
-    description: "Cross-platform server management with CLI and web dashboard",
-    problem: "Running Minecraft servers required technical knowledge and constant manual monitoring",
-    outcome: "Unified CLI + web UI for multi-server management, automated backups, plugin management, cron scheduling, and live resource monitoring",
-    tech: ["Python", "FastAPI", "React", "Vite", "Tailwind CSS", "WebSocket", "SQLite"],
-    github: "https://github.com/Sahaj33-op/MSM-minecraft-server-manager-win-linux-mac",
-    featured: true,
-  },
-  {
-    title: "Campus Assistant",
-    description: "Enterprise-grade multilingual AI assistant with robust monitoring and security",
-    problem: "Institutions needed secure, monitored AI that could handle diverse linguistic queries at scale without data leakage",
-    outcome: "RAG-powered system with production-grade monitoring, enterprise security guardrails, and support for 7+ regional languages",
-    tech: ["Next.js", "FastAPI", "Google Gemini", "ChromaDB", "LangChain", "Docker", "Security", "Monitoring"],
-    github: "https://github.com/DS-Labs-33/Campus-Assistant",
+    title: "Blue Can Coffee",
+    type: "website",
+    description: "Digital storefront and brand experience for a premium coffee roaster",
+    problem: "A premium brand needed a digital presence that matched the quality of their physical product",
+    outcome: "High-performance Next.js site with fluid animations and a conversion-focused checkout experience",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    github: "https://github.com/DS-Labs-33/Blue-Can-Coffee",
+    live: "https://bluecancoffee.vercel.app/",
     featured: true,
   },
   {
     title: "SkillWise",
+    type: "web-app",
     description: "AI-powered learning path generator that transforms your resume into a personalized 6-month roadmap",
     problem: "Career changers struggled to identify skill gaps and create structured learning plans",
     outcome: "Analyzes resumes with AI to generate roadmaps with curated courses, project ideas, and tech stack recommendations",
@@ -51,7 +49,29 @@ const projects = [
     featured: true,
   },
   {
+    title: "Campus Assistant",
+    type: "web-app",
+    description: "Enterprise-grade multilingual AI assistant with robust monitoring and security",
+    problem: "Institutions needed secure, monitored AI that could handle diverse linguistic queries at scale without data leakage",
+    outcome: "RAG-powered system with production-grade monitoring, enterprise security guardrails, and support for 7+ regional languages",
+    tech: ["Next.js", "FastAPI", "Google Gemini", "ChromaDB", "LangChain", "Docker", "Security", "Monitoring"],
+    github: "https://github.com/DS-Labs-33/Campus-Assistant",
+    featured: true,
+  },
+  {
+    title: "Enso Coffee",
+    type: "website",
+    description: "Minimalist e-commerce platform focusing on single-origin beans and zen aesthetics",
+    problem: "E-commerce sites are often cluttered; this project aimed for a 'Zen' shopping experience",
+    outcome: "Minimalist, high-speed interface with focused user journeys and high-end typography",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
+    github: "https://github.com/DS-Labs-33/enso-coffee",
+    live: "https://ensocoffee.vercel.app/",
+    featured: false,
+  },
+  {
     title: "ReleaseWave",
+    type: "cli-tool",
     description: "AI-Powered Changelog Generator that reads real code diffs and works on messy commits",
     problem: "Writing release notes is tedious and often misses key technical context or isn't tailored to the right audience",
     outcome: "Automates changelog generation to produce 3 audience-targeted changelogs in one command",
@@ -60,16 +80,40 @@ const projects = [
     featured: false,
   },
   {
-    title: "StudySage",
-    description: "Offline, AI-powered note assistant to summarize notes, generate quizzes, and extract handwritten text",
-    problem: "Students and professionals needed reliable AI document analysis without sending sensitive data to cloud APIs",
-    outcome: "Local-first desktop GUI application exporting to PDF securely with on-device models",
-    tech: ["Python", "Transformers", "NLTK", "OCR"],
-    github: "https://github.com/Sahaj33-op/StudySage-Offline-Online-AI-Note-Assistant",
+    title: "Minecraft Server Manager",
+    type: "web-app",
+    description: "Cross-platform server management with CLI and web dashboard",
+    problem: "Running Minecraft servers required technical knowledge and constant manual monitoring",
+    outcome: "Unified CLI + web UI for multi-server management, automated backups, plugin management, cron scheduling, and live resource monitoring",
+    tech: ["Python", "FastAPI", "React", "Vite", "Tailwind CSS", "WebSocket", "SQLite"],
+    github: "https://github.com/Sahaj33-op/MSM-minecraft-server-manager-win-linux-mac",
+    featured: false,
+  },
+  {
+    title: "SaaS Inspector",
+    type: "web-app",
+    description: "Evidence-backed idea validation tool for micro-SaaS founders",
+    problem: "Founders had no systematic way to validate SaaS ideas before investing time and money",
+    outcome: "10 independent market scanners analyze search volume, competitors, Reddit buzz, and more to deliver a Go/Experiment/No-Go verdict",
+    tech: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Redis", "Tailwind CSS"],
+    github: "https://github.com/Sahaj33-op/SaaS-Inspector",
+    featured: false,
+  },
+  {
+    title: "YT-DLP Downloader",
+    type: "web-app",
+    description: "A powerful Streamlit web app for downloading video and audio using yt-dlp",
+    problem: "Downloading media from various platforms required command-line knowledge and technical setup",
+    outcome: "Features quality/format selection, subtitle and metadata embedding, dark theme, and batch downloads",
+    tech: ["Python", "Streamlit", "yt-dlp", "FFmpeg"],
+    github: "https://github.com/Sahaj33-op/Streamlit-ytdlp-downloader-app",
+    live: "https://ytdlp-app-sahaj33.streamlit.app/",
+    experiment: true,
     featured: false,
   },
   {
     title: "ServerPulse",
+    type: "discord-bot",
     description: "Open Source Discord Analytics Bot providing real-time insights and AI-powered summaries",
     problem: "Discord server admins had no way to track engagement trends or detect unusual activity patterns",
     outcome: "Continuous activity tracking with real-time insights and anomaly alerts directly in Discord",
@@ -79,41 +123,12 @@ const projects = [
   },
   {
     title: "Vidya Vaani",
+    type: "web-app",
     description: "An intelligent, multilingual AI chatbot platform for colleges with advanced RAG capabilities",
     problem: "Educational content was inaccessible to students who preferred regional Indian languages",
     outcome: "Production-grade monitoring, enterprise security, and multilingual voice input with an admin analytics dashboard",
     tech: ["Next.js", "TypeScript", "FastAPI", "Google Gemini", "FAISS", "Tailwind CSS"],
     github: "https://github.com/Sahaj33-op/Vidya-vaani-V0",
-    featured: false,
-  },
-  {
-    title: "Hypixel SkyBlock Extractor",
-    description: "Securely extract comprehensive Hypixel SkyBlock profile data into raw JSON via Official Hypixel API v2",
-    problem: "Players needed a way to fetch, organize, and analyze their full game progression data",
-    outcome: "Cross-platform implementations optimized for generating context for AI analysis",
-    tech: ["Python", "PowerShell", "Hypixel API v2", "JSON"],
-    github: "https://github.com/Sahaj33-op/Hypixel-SkyBlock-Profile-Extractor",
-    experiment: true,
-    featured: false,
-  },
-  {
-    title: "YT-DLP Downloader",
-    description: "A powerful Streamlit web app for downloading video and audio using yt-dlp",
-    problem: "Downloading media from various platforms required command-line knowledge and technical setup",
-    outcome: "Features quality/format selection, subtitle and metadata embedding, dark theme, and batch downloads",
-    tech: ["Python", "Streamlit", "yt-dlp", "FFmpeg"],
-    github: "https://github.com/Sahaj33-op/Streamlit-ytdlp-downloader-app",
-    live: "https://ytdlp-downloader-app-sahaj33.streamlit.app/",
-    experiment: true,
-    featured: false,
-  },
-  {
-    title: "Game Price Scraper",
-    description: "Multi-store game price comparison and sale detection tool",
-    problem: "Gamers had to manually check multiple stores to find the best deals on games",
-    outcome: "Automated scraping of Steam, Epic Games, and GOG with normalized price comparison and discount tracking",
-    tech: ["Node.js", "Crawlee", "Apify SDK"],
-    experiment: true,
     featured: false,
   },
 ];
@@ -214,13 +229,18 @@ export function SelectedWork() {
             <TiltCard key={index} padding="p-8 md:p-10">
               <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8">
                 <div className="flex-1">
-                  <div className="flex items-center gap-4 mb-6">
+                  <div className="flex flex-wrap items-center gap-3 mb-6">
                     <h3 className="text-3xl font-medium text-[var(--foreground)] tracking-tight">
                       {project.title}
                     </h3>
-                    <span className="px-3 py-1 text-xs rounded-full bg-[var(--border)] text-[var(--foreground-muted)] font-medium">
-                      Featured
-                    </span>
+                    <div className="flex items-center gap-2">
+                      <span className="px-3 py-1 text-xs rounded-full bg-[var(--border)] text-[var(--foreground-muted)] font-medium uppercase tracking-wider">
+                        {project.type.replace("-", " ")}
+                      </span>
+                      <span className="px-3 py-1 text-xs rounded-full bg-[var(--accent)]/10 text-[var(--accent)] font-medium">
+                        Featured
+                      </span>
+                    </div>
                   </div>
                   <p className="text-xl text-[var(--foreground-muted)] mb-6 leading-relaxed">
                     {project.description}
@@ -253,7 +273,7 @@ export function SelectedWork() {
                       <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                       </svg>
-                      Live Demo
+                      {project.type === "website" || project.title === "PocketMC" ? "Visit Website" : "Live Demo"}
                     </motion.a>
                   )}
                   {"github" in project && project.github && (
@@ -293,9 +313,14 @@ export function SelectedWork() {
               <TiltCard key={index} padding="p-6">
                 <div className="flex flex-col h-full justify-between">
                   <div>
-                    <h3 className="text-xl font-medium text-[var(--foreground)] mb-3">
-                      {project.title}
-                    </h3>
+                    <div className="flex items-center justify-between mb-3">
+                      <h3 className="text-xl font-medium text-[var(--foreground)]">
+                        {project.title}
+                      </h3>
+                      <span className="px-2 py-0.5 text-[10px] rounded-full bg-[var(--border)] text-[var(--foreground-muted)] font-medium uppercase tracking-wider">
+                        {project.type.replace("-", " ")}
+                      </span>
+                    </div>
                     <p className="text-[var(--foreground-muted)] mb-6 leading-relaxed">
                       {project.description}
                     </p>
@@ -316,7 +341,20 @@ export function SelectedWork() {
                         </span>
                       )}
                     </div>
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-6">
+                      {"live" in project && project.live && (
+                        <a
+                          href={project.live}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--foreground)] hover:text-[var(--accent)] transition-colors"
+                        >
+                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                          {project.type === "website" ? "Website" : "Live Demo"}
+                        </a>
+                      )}
                       {"github" in project && project.github && (
                         <a
                           href={project.github}
@@ -355,14 +393,32 @@ export function SelectedWork() {
                 <TiltCard key={index} padding="p-6">
                   <div className="flex flex-col h-full justify-between">
                     <div>
-                      <h3 className="text-lg font-medium text-[var(--foreground)] mb-2">
-                        {project.title}
-                      </h3>
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="text-lg font-medium text-[var(--foreground)]">
+                          {project.title}
+                        </h3>
+                        <span className="px-2 py-0.5 text-[9px] rounded-full bg-[var(--border)] text-[var(--foreground-muted)] font-medium uppercase tracking-wider">
+                          {project.type.replace("-", " ")}
+                        </span>
+                      </div>
                       <p className="text-sm text-[var(--foreground-muted)] mb-6 leading-relaxed">
                         {project.description}
                       </p>
                     </div>
                     <div className="flex items-center gap-4">
+                      {"live" in project && project.live && (
+                        <a
+                          href={project.live}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-xs font-medium text-[var(--foreground)] hover:text-[var(--accent)] transition-colors"
+                        >
+                          <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                          {project.type === "website" ? "Website" : "Live"}
+                        </a>
+                      )}
                       {"github" in project && project.github && (
                         <a
                           href={project.github}
