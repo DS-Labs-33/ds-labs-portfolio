@@ -30,19 +30,22 @@ export function Hero() {
         animate="visible"
       >
         {/* Studio Label */}
-        <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--border)] mb-8 bg-[var(--background)]/50 backdrop-blur-md shadow-sm">
-          <span className="w-2 h-2 rounded-full bg-[var(--success)] animate-pulse shadow-[0_0_8px_var(--success)]"></span>
-          <span className="text-sm font-medium tracking-wide text-[var(--foreground-muted)] uppercase">
+        <motion.div variants={itemVariants} className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-[var(--border)] mb-8 bg-[var(--background)]/50 backdrop-blur-md shadow-sm">
+          <div className="w-5 h-5 rounded-full overflow-hidden border border-[var(--border)]">
+            <img src="/dslabs.jpg" alt="Avatar" className="w-full h-full object-cover" />
+          </div>
+          <span className="text-sm font-medium tracking-wide text-[var(--foreground-muted)] uppercase flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-[var(--success)] animate-pulse shadow-[0_0_8px_var(--success)]"></span>
             Available for select projects
           </span>
         </motion.div>
 
         {/* Headline */}
-        <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl lg:text-8xl font-medium tracking-tighter mb-8 text-[var(--foreground)]">
-          We build software
+        <motion.h1 variants={itemVariants} className="text-4xl md:text-6xl lg:text-7xl font-medium tracking-tighter mb-8 text-[var(--foreground)] leading-[1.1]">
+          Software that adapts to your will...
           <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--foreground)] to-[var(--foreground-muted)]">
-            that works as you wish.
+            that’s what we build.
           </span>
         </motion.h1>
 

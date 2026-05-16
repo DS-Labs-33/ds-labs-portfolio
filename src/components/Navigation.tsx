@@ -54,10 +54,14 @@ export function Navigation() {
           {/* Logo */}
           <a
             href="#"
-            className="text-xl font-medium tracking-tight text-[var(--foreground)] group flex items-center gap-2"
+            className="text-xl font-medium tracking-tight text-[var(--foreground)] group flex items-center gap-3"
           >
-            <div className="w-6 h-6 rounded-md bg-[var(--foreground)] text-[var(--background)] flex items-center justify-center font-bold text-xs group-hover:rotate-12 transition-transform">
-              DS
+            <div className="relative w-8 h-8 rounded-full overflow-hidden border border-[var(--border)] group-hover:scale-110 transition-transform shadow-sm">
+              <img 
+                src="/dslabs.jpg" 
+                alt="DS Labs Avatar" 
+                className="object-cover w-full h-full"
+              />
             </div>
             DS Labs
           </a>
